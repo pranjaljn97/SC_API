@@ -1,0 +1,31 @@
+{
+  "name": "image-resizing-api",
+  "version": "0.0.1",
+  "description": "it is a simple image resizing api",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pranjaljn97/SC_API.git"
+  },
+  "keywords": [
+    "JWT",
+    "JSON",
+    "Patch"
+  ],
+  "author": "Pranjal Jain (pranjal.jn97@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pranjaljn97/SC_API/issues"
+  },
+  "homepage": "https://github.com/pranjaljn97/SC_API#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.0",
+    "mongoose": "^5.0.11"
+  }
+}
