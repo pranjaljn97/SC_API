@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 var jsonpatch = require('jsonpatch');
 var Jimp = require('jimp');
+var bunyan = require('bunyan');
 
 // Connect to DB
 var mongoose = require('mongoose');
@@ -12,6 +13,7 @@ var User = require('./models/users');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+var log = bunyan.createLogger({name: "image-resize-api"});
 
 // Set up port for server to listen on
 const port = process.env.PORT || 3000;
@@ -22,7 +24,7 @@ var router = express.Router();
 app.use('/', router);
 
 router.use(function(req, res, next) {
-  console.log('Processing...');
+  log.info('Processing...');
   next();
 });
 
@@ -37,7 +39,7 @@ router.route('/login')
         res.send(err);
       }
        const token = jwt.sign({ userName: user._userName }, secret_key, {
-      expiresIn: 86400 // expires in 24 hours
+      expiresIn: 86400 
     });
       res.status(200).send({ auth: true, token: token });
     });
@@ -90,5 +92,5 @@ router.route('/getThumbnail')
 
 
 app.listen(port, () => {
-  console.log("Server listening on port " + port);
+  log.info("Server listening on port " + port);
 });

@@ -5,11 +5,12 @@ It is a simple image resizing API.
 
 # Dependencies
 
-Express
-Mongoose
-Body-Parser
-Jsonwebtokens
-     
+Express <br  />
+Mongoose<br  />
+Body-Parser<br  />
+Jsonwebtokens<br  />
+jsonpatch<br  />
+jimp     <br  />
 
 # Install
 
@@ -21,9 +22,9 @@ $ npm start
 
 # Routes
 
-POST   /login
-POST   /apply
-POST   /resize
+POST   /login <br  />
+POST   /applypatch<br  />
+POST   /getThumbnail<br  />
 
 
 # Models
