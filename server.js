@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
+var jsonpatch = require('jsonpatch');
+var Jimp = require('jimp');
 
 // Connect to DB
 var mongoose = require('mongoose');
@@ -40,6 +42,50 @@ router.route('/login')
       res.status(200).send({ auth: true, token: token });
     });
   });
+
+ router.route('/applypatch')
+  .post(function(req, res) {
+    
+       mydoc1 = req.body.doc;
+       thepatch = req.body.patch;
+        
+    var token = req.headers['x-access-token'];
+    if(!token) 
+    	return res.status(401).send({ auth: false, message: 'No token provided.' });
+    
+    jwt.verify(token, secret_key, function(err, decoded) {
+    if (err) 
+    	return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+   
+patcheddoc = jsonpatch.apply_patch(mydoc1, thepatch);     
+    res.status(200).send(patcheddoc);
+  });
+});
+
+router.route('/getThumbnail')
+  .post(function(req, res) {
+    var url = req.body.url;
+    var token = req.headers['x-access-token'];
+    if(!token) 
+    	return res.status(401).send({ auth: false, message: 'No token provided.' });
+    
+    jwt.verify(token, secret_key, function(err, decoded) {
+    if (err) 
+    	return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+    
+    
+    Jimp.read(url).then(function (img) {
+    img.resize(50,50)            
+         .quality(40)                  
+         .write("thumbnail.png", function(callback){
+               res.status(200).sendFile( __dirname + "/thumbnail.png" );
+         } );
+}).catch(function (err) {
+    res.status(401).send(err);
+});
+    
+  });
+});
 
 
 
