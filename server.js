@@ -8,7 +8,7 @@ var bunyan = require('bunyan');
 
 // Connect to DB
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/mongo');
+mongoose.connect('mongodb://pranjal:pranjal123@ds223609.mlab.com:23609/mongo');
 var User = require('./models/users');
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -26,6 +26,11 @@ app.use('/', router);
 router.use(function(req, res, next) {
   log.info('Processing...');
   next();
+});
+
+
+router.get("/", (req, res) => {
+res.sendFile(__dirname + "/index.html");
 });
 
 router.route('/login')
