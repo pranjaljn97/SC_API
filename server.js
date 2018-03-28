@@ -8,7 +8,7 @@ var bunyan = require('bunyan');
 
 // Connect to DB
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://pranjal:pranjal123@ds223609.mlab.com:23609/mongo');
+mongoose.connect('mongodb://localhost:27017/mongo');
 var User = require('./models/users');
 
 app.use(bodyParser.urlencoded({extended: true}));
