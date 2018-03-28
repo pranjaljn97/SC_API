@@ -3,7 +3,7 @@ It is a simple image resizing API.
 
 # Setup
 
-# Dependencies
+# Prod Dependencies
 
 Express <br  />
 Mongoose<br  />
@@ -19,6 +19,10 @@ $ npm install
 # Run
 
 $ npm start
+
+# Test
+
+npm test
 
 # Routes
 

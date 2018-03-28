@@ -87,7 +87,7 @@ router.route('/getThumbnail')
          .write("thumbnail.png", function(callback){
                res.status(200).sendFile( __dirname + "/thumbnail.png" );
          } );
-}).catch(function (err) {
+}).catch(err, () => {
     res.status(401).send(err);
 });
     
